@@ -90,20 +90,29 @@ following tutorials.
 
 Currently in the initial setup and development stage.
 
-## � Git Workflow
+## 🔄 Git Workflow
 
-The usual workflow in VS Code is:
+A working Git flow for this project is:
 
 1. Edit your files.
-2. Open the Source Control panel in the sidebar (or press Ctrl+Shift+G).
-3. Check Git status to see which files changed.
-4. Click the plus button next to files or run `git add .` to stage changes.
-5. Commit with a message using `git commit -m "your message"`.
+2. Run `git status` to check what changed.
+3. Stage the file with `git add README.md` or `git add .`.
+4. Commit with `git commit -m "your message"`.
+5. If the file is already tracked and you want to commit all modified files quickly, use `git commit -am "your message"`.
 6. Push with `git push` to upload the changes to GitHub.
 
-> Git status is not in the Edit menu. In VS Code, it appears in the Source Control view, where you can also stage, commit, and push changes.
+Example:
 
-## �👨‍💻 Author
+```bash
+git status
+git add README.md
+git commit -m "Initialize CTF platform project"
+git push
+```
+
+> In VS Code, you can also do this from the Source Control panel. Git status is not found under the Edit menu.
+
+## 👨‍💻 Author
 
 Tan Jun You
 

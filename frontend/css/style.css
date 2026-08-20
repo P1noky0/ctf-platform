@@ -17,6 +17,18 @@ main {
     padding: 20px;
 }
 
+.hero {
+    min-height: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero button {
+    align-self: flex-start;
+}
+
 button {
     padding: 10px 20px;
     cursor: pointer;
@@ -36,8 +48,19 @@ button {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .challenge-card h3 {
     margin-top: 0;
+}
+
+.challenge-card:hover {
+    transform: translateY(-3px);
+}
+
+#challengeDetails {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #ddd;
 }

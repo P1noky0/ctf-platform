@@ -1,6 +1,3 @@
-# ctf-platform
-A self-built Capture The Flag platform for learning web development, cybersecurity, and software engineering.
-
 # 🛡️ CTF Platform
 
 A self-built Capture The Flag (CTF) platform created for learning
@@ -49,17 +46,27 @@ into a full-stack CTF platform.
 - Next.js
 - Docker
 
-## 🧩 Planned Features
+## 🧩 Features
 
-- [ ] Homepage
-- [ ] Challenge listing
+### Currently Implemented
+
+- [x] Basic homepage
+- [x] Dynamic challenge listing using JavaScript
+- [x] Challenge data stored as JavaScript objects
+- [x] Basic frontend project structure
+- [x] Smooth navigation to the challenge section
+- [x] Interactive challenge cards
+- [x] Dynamic challenge details view
+
+### Planned
+
 - [ ] Challenge details
 - [ ] Flag submission
 - [ ] User accounts
 - [ ] Authentication
 - [ ] Score system
 - [ ] Leaderboard
-- [ ] Challenge categories
+- [ ] Challenge categories and filtering
 - [ ] Admin dashboard
 - [ ] Challenge management
 - [ ] Database integration
@@ -89,6 +96,14 @@ following tutorials.
 ## 🚀 Project Status
 
 Currently in the initial setup and development stage.
+
+Current progress includes:
+
+- Basic project and Git/GitHub setup
+- Initial HTML, CSS, and JavaScript frontend
+- Dynamic rendering of challenge cards from JavaScript data
+- Smooth navigation from the homepage to the challenge section
+- Interactive challenge selection and details display
 
 ## 🔄 Git Workflow
 

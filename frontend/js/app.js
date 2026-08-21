@@ -1,6 +1,6 @@
 const startButton = document.getElementById("startButton");
 const challengesSection = document.getElementById("challenges");
-
+const scoreDisplay = document.getElementById("scoreDisplay");
 startButton.addEventListener("click", function () {
 
     challengesSection.scrollIntoView({
@@ -16,7 +16,8 @@ const challenges = [
         difficulty: "Easy",
         points: 100,
         description: "Exploit a vulnerable login system to find the hidden flag.",
-        flag: "CTF{sql_injection}"
+        flag: "CTF{sql_injection}",
+        solved: false
     },
     {
         title: "Caesar Cipher",
@@ -24,7 +25,8 @@ const challenges = [
         difficulty: "Easy",
         points: 100,
         description: "Decrypt the encoded message and recover the flag.",
-        flag: "CTF{caesar_cipher}"
+        flag: "CTF{caesar_cipher}",
+        solved: false
     },
     {
         title: "Hidden Image",
@@ -32,12 +34,14 @@ const challenges = [
         difficulty: "Easy",
         points: 150,
         description: "Investigate an image file and search for hidden information.",
-        flag: "CTF{hidden_image}"
+        flag: "CTF{hidden_image}",
+        solved: false
     }
 ];
 
 //Application state
 let selectedChallenge = null;
+let score = 0;
 
 const challengeList = document.getElementById("challengeList");
 
@@ -133,13 +137,36 @@ function submitFlag() {
 
     const submittedFlag = flagInput.value.trim();
 
-    if(submittedFlag === selectedChallenge.flag) {
+    // if(submittedFlag === selectedChallenge.flag) {
+    //     submissionStatus.textContent = 
+    //     "Correct flag! Challenge solved.";
+    // } else {
+    //     submissionStatus.textContent = 
+    //     "Incorrect flag. Try again.";
+    // }
+    if (submittedFlag !== selectedChallenge.flag) {
         submissionStatus.textContent = 
-        "Correct flag! Challenge solved.";
-    } else {
-        submissionStatus.textContent = 
-        "Incorrect flag. Try again.";
+            "Incorrect flag. Try again."; 
+        return;
     }
+
+    if (selectedChallenge.solved) {
+        submissionStatus.textContent = 
+            "Challenge already solved.";
+        
+        return;
+    }
+
+    selectedChallenge.solved = true;
+
+    score = score + selectedChallenge.points;
+
+    updateScore();
+
+    submissionStatus.textContent = 
+        `Correct flag! You earned ${selectedChallenge.points} points.`;
 }
 
-
+function updateScore(){
+    scoreDisplay.textContent = score;
+}

@@ -47,24 +47,42 @@ const challengeList = document.getElementById("challengeList");
 
 //Logic
 //Generate cards for each challenge
-challenges.forEach(function (challenge) {
-    const card = document.createElement("div");
+function renderChallenges() {
+    challengeList.innerHTML = "";
 
-    card.classList.add("challenge-card");
+    challenges.forEach(function (challenge) {
+        const card = document.createElement("div");
 
-    card.innerHTML = `
-        <h3>${challenge.title}</h3>
-        <p>Category: ${challenge.category}</p>
-        <p>Difficulty: ${challenge.difficulty}</p>
-        <p>Points: ${challenge.points}</p>
-    `;
+        card.classList.add("challenge-card");
 
-    card.addEventListener("click", function () {
-        showChallengeDetails(challenge);
+        if (challenge.solved) {
+            card.classList.add("solved");
+        }
+
+        card.innerHTML = `
+            <h3>${challenge.title}</h3>
+            <p>Category: ${challenge.category}</p>
+            <p>Difficulty: ${challenge.difficulty}</p>
+            <p>Points: ${challenge.points}</p>
+        `;
+
+        if (challenge.solved) {
+            card.innerHTML += `
+                <p class="solved-status">
+                    ✓ Solved
+                </p>
+            `
+        }
+
+        card.addEventListener("click", function () {
+            showChallengeDetails(challenge);
+        });
+
+        challengeList.appendChild(card);
     });
+}
 
-    challengeList.appendChild(card);
-});
+renderChallenges();
 
 //Show details
 function showChallengeDetails(challenge) {
@@ -163,6 +181,8 @@ function submitFlag() {
 
     updateScore();
 
+    renderChallenges();
+
     submissionStatus.textContent = 
         `Correct flag! You earned ${selectedChallenge.points} points.`;
 }
@@ -170,3 +190,4 @@ function submitFlag() {
 function updateScore(){
     scoreDisplay.textContent = score;
 }
+

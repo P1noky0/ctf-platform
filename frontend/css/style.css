@@ -77,3 +77,11 @@ button {
     margin-bottom: 15px;
     padding: 10px;
 }
+
+.challenge-card.solved {
+    opacity: 0.3;
+}
+
+.solved-status {
+    font-weight: bold;
+}

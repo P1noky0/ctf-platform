@@ -1,6 +1,8 @@
+//1. just let the page scroll to challenges section when click the start button
 const startButton = document.getElementById("startButton");
 const challengesSection = document.getElementById("challenges");
-const scoreDisplay = document.getElementById("scoreDisplay");
+
+//learned forEach
 startButton.addEventListener("click", function () {
 
     challengesSection.scrollIntoView({
@@ -42,19 +44,36 @@ const challenges = [
 //Application state
 let selectedChallenge = null;
 let score = 0;
+let selectedCategory = "All";
 
+//1. display the challenges in the object challenges
+//2. getting from html and update the score
+//3. let the button can have filter function
 const challengeList = document.getElementById("challengeList");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const filterButtons = document.querySelectorAll("#challengeFilters button");
 
 //Logic
 //Generate cards for each challenge
 function renderChallenges() {
+    //remove old cards
     challengeList.innerHTML = "";
 
-    challenges.forEach(function (challenge) {
+    const filteredChallenges = challenges.filter(function(challenge) {
+        
+        if (selectedCategory === "All") {
+            return true;
+        }
+
+        return challenge.category === selectedCategory;
+    });
+
+    filteredChallenges.forEach(function (challenge) {
         const card = document.createElement("div");
 
         card.classList.add("challenge-card");
 
+        //for css know this challenge is solved
         if (challenge.solved) {
             card.classList.add("solved");
         }
@@ -191,3 +210,11 @@ function updateScore(){
     scoreDisplay.textContent = score;
 }
 
+filterButtons.forEach(function (button){
+    button.addEventListener("click",function(){
+
+        selectedCategory = button.dataset.category;
+        
+        renderChallenges();
+    });
+});

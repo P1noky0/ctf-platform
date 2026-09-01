@@ -85,3 +85,13 @@ button {
 .solved-status {
     font-weight: bold;
 }
+
+#challengeFilters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#challengeFilters button.active-filter {
+    font-weight: bold;
+}

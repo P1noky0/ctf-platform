@@ -2,7 +2,9 @@
 const startButton = document.getElementById("startButton");
 const challengesSection = document.getElementById("challenges");
 
-//learned forEach
+//learned forEach, textContent, innerHTML, appendChild()
+
+// Scroll to the challenges section when the start button is clicked
 startButton.addEventListener("click", function () {
 
     challengesSection.scrollIntoView({
@@ -68,6 +70,7 @@ function renderChallenges() {
         return challenge.category === selectedCategory;
     });
 
+    // Filter challenges based on the selected category
     filteredChallenges.forEach(function (challenge) {
         const card = document.createElement("div");
 

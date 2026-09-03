@@ -58,6 +58,15 @@ const filterButtons = document.querySelectorAll("#challengeFilters button");
 //Logic
 //Generate cards for each challenge
 function renderChallenges() {
+    //Update active filter button
+    filterButtons.forEach(function(button) {
+        if(button.dataset.category === selectedCategory) {
+            button.classList.add("active-filter");
+        } else {
+            button.classList.remove("active-filter");
+        }
+    });
+
     //remove old cards
     challengeList.innerHTML = "";
 
@@ -130,6 +139,10 @@ function showChallengeDetails(challenge) {
     startChallengeButton.addEventListener("click", function () {
         showChallengeWorkspace();
     });
+
+    document.getElementById("challengeDetails").scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 //Show workspace
@@ -164,6 +177,10 @@ function showChallengeWorkspace() {
 
         submitFlagButton.addEventListener("click",function (){
             submitFlag();
+        });
+        
+        document.getElementById("challengeWorkspace").scrollIntoView({
+            behavior: "smooth"
         });
         
 }

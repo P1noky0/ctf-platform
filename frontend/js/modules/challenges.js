@@ -1,12 +1,12 @@
 
 //Generate cards for each challenge
-export function renderChallenges(
+export function renderChallenges( {
     challenges,
     selectedCategory,
     challengeList,
     filterButtons,
     showChallengeDetails
-) {
+} ) {
     //Update active filter button
     filterButtons.forEach(function(button) {
         if(button.dataset.category === selectedCategory) {

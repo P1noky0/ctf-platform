@@ -25,12 +25,13 @@ const filterButtons = document.querySelectorAll("#challengeFilters button");
 
 //Logic 
 
-renderChallenges(
+renderChallenges({
     challenges,
-    state.selectedCategory,
+    selectedCategory: state.selectedCategory,
     challengeList,
     filterButtons,
-    showChallengeDetails);
+    showChallengeDetails
+});
 
 updateScore();
 
@@ -132,12 +133,13 @@ function submitFlag() {
 
     updateScore();
 
-    renderChallenges(
-    challenges,
-    state.selectedCategory,
-    challengeList,
-    filterButtons,
-    showChallengeDetails);
+    renderChallenges({
+        challenges,
+        selectedCategory: state.selectedCategory,
+        challengeList,
+        filterButtons,
+        showChallengeDetails
+    });
 
     submissionStatus.textContent = 
         `Correct flag! You earned ${state.selectedChallenge.points} points.`;
@@ -152,12 +154,12 @@ filterButtons.forEach(function (button){
 
         state.selectedCategory = button.dataset.category;
         
-        renderChallenges(
+        renderChallenges({
             challenges,
-            state.selectedCategory,
+            selectedCategory: state.selectedCategory,
             challengeList,
             filterButtons,
             showChallengeDetails
-        );
+        });
     });
 });

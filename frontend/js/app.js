@@ -2,6 +2,7 @@ import { challenges } from "./data/challenges.js";
 import { renderChallenges } from "./modules/challenges.js";
 //Application state
 import { state } from "./modules/state.js";
+import { addScore } from "./modules/scoring.js";
 //1. just let the page scroll to challenges section when click the start button
 const startButton = document.getElementById("startButton");
 const challengesSection = document.getElementById("challenges");
@@ -129,7 +130,7 @@ function submitFlag() {
 
     state.selectedChallenge.solved = true;
 
-    state.score = state.score + state.selectedChallenge.points;
+    addScore(state, state.selectedChallenge.points);
 
     updateScore();
 

@@ -3,6 +3,9 @@ import { renderChallenges } from "./modules/challenges.js";
 //Application state
 import { state } from "./modules/state.js";
 import { addScore } from "./modules/scoring.js";
+import { renderChallengeDetails } from "./modules/challengeDetails.js";
+import { renderChallengeWorkspace } from "./modules/challengeWorkspace.js";
+import { checkFlag } from "./modules/flagValidation.js";
 //1. just let the page scroll to challenges section when click the start button
 const startButton = document.getElementById("startButton");
 const challengesSection = document.getElementById("challenges");
@@ -43,16 +46,7 @@ function showChallengeDetails(challenge) {
     const challengeDetailsContent =
         document.getElementById("challengeDetailsContent");
 
-    challengeDetailsContent.innerHTML = `
-        <h3>${challenge.title}</h3>
-
-        <p><strong>Category:</strong> ${challenge.category}</p>
-        <p><strong>Difficulty:</strong> ${challenge.difficulty}</p>
-        <p><strong>Points:</strong> ${challenge.points}</p>
-        <p><strong>Description:</strong> ${challenge.description}</p>
-
-        <button id="startChallengeButton">Start Challenge</button>
-    `;
+    renderChallengeDetails(challenge, challengeDetailsContent);
 
     const startChallengeButton =
         document.getElementById("startChallengeButton");
@@ -71,27 +65,10 @@ function showChallengeWorkspace() {
     const challengeWorkspaceContent = 
         document.getElementById("challengeWorkspaceContent");
 
-    challengeWorkspaceContent.innerHTML = `
-        <h3>${state.selectedChallenge.title}</h3>
-        <p>
-            ${state.selectedChallenge.description}
-        </p>
-        <label for="flagInput">Flag:</label>
-        <input
-            type="text"
-            id="flagInput"
-            placeholder="Enter your flag"
-        >
-
-        <button id="submitFlagButton">
-            Submit Flag
-        </button>
-
-        <p id="submissionStatus">
-            Waiting for flag submission.
-        </p>
-
-        `;
+    renderChallengeWorkspace(
+        state.selectedChallenge, 
+        challengeWorkspaceContent
+    );
 
         const submitFlagButton = 
             document.getElementById("submitFlagButton");
@@ -115,7 +92,7 @@ function submitFlag() {
 
     const submittedFlag = flagInput.value.trim();
 
-    if (submittedFlag !== state.selectedChallenge.flag) {
+    if (!checkFlag(state.selectedChallenge, submittedFlag)) {
         submissionStatus.textContent = 
             "Incorrect flag. Try again."; 
         return;
